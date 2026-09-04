@@ -5,8 +5,8 @@
 ## 快速使用
 
 ```bash
-# 方式一：CLI（配合 harness-kit）
-npx harness-kit init my-app
+# 方式一：CLI（配合 harness-tool）
+npx harness-tool init my-app
 
 # 方式二：GitHub Template（本仓库已标记为 template）
 # New repository → Choose a template → auki-zy/harness-template
@@ -15,7 +15,7 @@ npx harness-kit init my-app
 # 复制文件 → 按 index.md 复制顺序 → 按 docs/BOOTSTRAP.md 落地
 ```
 
-配套 CLI：[`harness-kit`](https://github.com/auki-zy/harness-kit)（把本模板一键带进新项目：`init` 合并不覆盖 + `doctor` 就绪自检）。
+配套 CLI：[`harness-tool`](https://github.com/auki-zy/harness-tool)（把本模板一键带进新项目：`init` 合并不覆盖 + `doctor` 就绪自检）。
 
 ## 内置能力（模板 v1，渐进披露——AGENTS 是入口，细节在 docs/）
 
