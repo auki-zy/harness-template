@@ -10,6 +10,7 @@
    `docs/RELIABILITY.md` 填起来。
 4. 在 `docs/exec-plans/active/` 下创建你的第一份 active plan。
 5. 始终保持入口文件很短，详细规则拆到链接文档里。
+6. 开新项目的落地执行清单见 `docs/BOOTSTRAP.md`（复制完成之后照做）。
 
 ## 这套模板主要优化什么
 

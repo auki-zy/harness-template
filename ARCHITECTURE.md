@@ -2,6 +2,8 @@
 
 这份文件是系统的顶层地图。它应该保持简短，只提供最关键的结构信息，并把更深的内容指向其他文档。
 
+> 模板占位：本文件是开箱骨架。开新项目时按 `docs/BOOTSTRAP.md` 第 2 步填写；未填写项视为"尚未决策"，agent 不得自行假设。
+
 ## 系统形态
 
 - 产品：`[替换成产品名]`
@@ -21,6 +23,8 @@
 用固定方向的分层模型，避免 agent 临场发明架构：
 
 `Types -> Config -> Repo -> Service -> Runtime -> UI`
+
+前端项目默认链：`shared -> components -> features -> widgets -> pages`（FSD，规则见 `docs/MODULE_STRUCTURE.md`）。链可以按项目换，**方向规则不变**：低层不知道上层存在。
 
 跨领域关注点应该通过明确的 provider 或 adapter 边界进入，而不是直接跨层穿透。
 

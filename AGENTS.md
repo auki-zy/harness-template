@@ -10,7 +10,7 @@
 2. 读取 `ARCHITECTURE.md`，理解当前系统地图和硬性依赖规则。
 3. 读取 `docs/QUALITY_SCORE.md`，先知道最弱的产品领域和架构层。
 4. 读取 `docs/PLANS.md`，再打开当前要执行的 active plan。
-5. 读取相关的 `docs/product-specs/` 规格文档。
+5. 读取相关规格与工程规范：`docs/product-specs/`；改 UI/代码前加读 `docs/FRONTEND.md`、`docs/CODE_STANDARDS.md`、`docs/MODULE_STRUCTURE.md`。
 6. 跑这个仓库约定的 bootstrap 与验证路径。
 7. 如果基础验证先失败，先修 baseline，再加新范围。
 
@@ -23,7 +23,16 @@
 - `docs/QUALITY_SCORE.md`：产品领域与架构层健康度
 - `docs/RELIABILITY.md`：运行信号、benchmark、重启要求
 - `docs/SECURITY.md`：密钥、沙箱、数据和外部动作规则
-- `docs/FRONTEND.md`：UI 约束、设计系统规则、可访问性检查
+- `docs/FRONTEND.md`：UI 约束、默认前端栈契约、样式方案、可访问性、UI 验证闭环
+- `docs/CODE_STANDARDS.md`：命名、文件拆分、TypeScript、副作用与提交约定
+- `docs/MODULE_STRUCTURE.md`：前端模块分层（FSD 规则）与依赖方向（pages/widgets/features/components/shared；详解见 `docs/references/fsd-guide.md`）
+- `docs/BOOTSTRAP.md`：用模板开新项目的必填/必装清单
+- `docs/TESTING.md`：测试策略（层级/mock 边界/覆盖率/UI 证据）
+- `docs/CI_CD.md`：CI 门禁蓝图与发布要点
+- `docs/REVIEW.md`：Code Review / PR 约定与反馈升级回路
+- `docs/AGENT_TOOLING.md`：AI 工具生态（AGENTS↔CLAUDE/.cursor）与 skills 组织
+- `docs/MEMORY.md`：长期记忆策略（分层/历史索引/收尾与卫生规则）
+- `skills/README.md`：技能源目录与入库标准（当前为空，实战验证后逐批入库）
 
 ## 工作约定
 
