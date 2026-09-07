@@ -53,7 +53,7 @@ description: 一句话说明何时该用（触发条件尽量具体、可判定�
 
 - **内置技能一键安装**：项目根执行 `node skills/install.mjs [--agents claude,cursor]`——把顶层内置技能装到 `.claude/skills`、`.cursor/skills`（幂等：已存在跳过；零依赖；不执行技能内容）。内置集是随模板快照分发的**稳定默认集**。
 - **需要持续更新的技能**：用 `harness-tool skills install <owner/repo[:path]> [--update]` 直接从源（如本模板仓库 `auki-zy/harness-template:skills/<name>`）安装/更新——不依赖模板快照。详见 [harness-tool](https://github.com/auki-zy/harness-tool)。
-- **草案技能**：放 `skills/experimental/<name>/`——`install.mjs` 不会安装、也不随内置集下发；验证成熟后提升到顶层。
+- **草案技能**：放 `skills/experimental/<name>/`——`install.mjs` 不会把它装到 agent 技能目录（仅在仓库内作参考/试点，附 `EVIDENCE.md` 记录验证证据）；验证成熟后提升到顶层。
 - 仓库内 `skills/` 始终是源，各 agent 目录（`.claude/skills` 等）只是安装副本。
 - 发现路径：本 README 列当前技能清单；agent 开工时由 `AGENTS.md` 路由或工具视图引用。
 
