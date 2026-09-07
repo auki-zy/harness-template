@@ -51,14 +51,9 @@ description: 一句话说明何时该用（触发条件尽量具体、可判定�
 
 ## 安装 / 发现
 
-- **内置技能一键安装（推荐）**：项目根执行
-  - `node skills/install.mjs` —— 安装缺失技能到 `.claude/skills`、`.cursor/skills`（已存在跳过，幂等）
-  - `node skills/install.mjs --update` —— 用当前 `skills/` 源**覆盖更新**已装副本（模板升级拿到新技能后用它刷新）
-  - 可选 `--agents claude,cursor`
-  - 零依赖、不执行技能内容；每次运行写入 `skills/.installed.json`（技能×agent×动作×时间，供审计/更新）
-- **外部技能源**：`harness-tool skills install <本地路径>`（未来支持 `owner/repo:path` 等远端源）；详见 [harness-tool](https://github.com/auki-zy/harness-tool)。
-- **草案技能放 `skills/experimental/<name>/`**：不会被 `install.mjs` 自动安装、也不随内置快照下发；验证成熟后提升到 `skills/<name>/` 顶层即进入内置。
-- 手工方式：直接复制技能目录到目标工具目录（详见 `docs/BOOTSTRAP.md` §技能）。
+- **内置技能一键安装**：项目根执行 `node skills/install.mjs [--agents claude,cursor]`——把顶层内置技能装到 `.claude/skills`、`.cursor/skills`（幂等：已存在跳过；零依赖；不执行技能内容）。内置集是随模板快照分发的**稳定默认集**。
+- **需要持续更新的技能**：用 `harness-tool skills install <owner/repo[:path]> [--update]` 直接从源（如本模板仓库 `auki-zy/harness-template:skills/<name>`）安装/更新——不依赖模板快照。详见 [harness-tool](https://github.com/auki-zy/harness-tool)。
+- **草案技能**：放 `skills/experimental/<name>/`——`install.mjs` 不会安装、也不随内置集下发；验证成熟后提升到顶层。
 - 仓库内 `skills/` 始终是源，各 agent 目录（`.claude/skills` 等）只是安装副本。
 - 发现路径：本 README 列当前技能清单；agent 开工时由 `AGENTS.md` 路由或工具视图引用。
 
