@@ -56,6 +56,7 @@ description: 一句话说明何时该用（触发条件尽量具体、可判定�
 - **草案技能**：放 `skills/experimental/<name>/`——`install.mjs` 不会把它装到 agent 技能目录（仅在仓库内作参考/试点，附 `EVIDENCE.md` 记录验证证据）；验证成熟后提升到顶层。
 - 仓库内 `skills/` 始终是源，各 agent 目录（`.claude/skills` 等）只是安装副本。
 - 发现路径：本 README 列当前技能清单；agent 开工时由 `AGENTS.md` 路由或工具视图引用。
+- 验证约定：技能有效性用固定任务基准验证（详见 [`skills/benchmark-guide.md`](benchmark-guide.md)）；experimental 技能须带 `EVIDENCE.md` 与 `benchmarks/` 证据。
 
 ## 当前技能清单
 
