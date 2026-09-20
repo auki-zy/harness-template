@@ -1,7 +1,7 @@
 # CI_CD.md
 
 这份文件定义 CI 门禁蓝图：把 `AGENTS.md` 的"完成定义"与 `RELIABILITY.md` 的标准路径机械化，让人机和 agent 共用同一道门禁。
-模板层只放蓝图与理由；`.github/workflows` 等实现在 bootstrap 时落地（见 `BOOTSTRAP.md`）。
+模板层**已带可跑的实现**：`scripts/verify.mjs`（零成本守卫 + 五件套）与 `.github/workflows/verify.yml`（同一条命令）；bootstrap 时按项目补自己的 job，别另起一套命令（见 `BOOTSTRAP.md`）。
 
 ## 门禁顺序（标准流水线）
 
@@ -15,7 +15,7 @@ typecheck → lint → test → build → (结构检查) → 全绿才可合并/
 | lint | ESLint（含 import 边界/命名规则） | 风格与结构机械执行 | 阻断 |
 | test | Vitest/项目框架（`TESTING.md` 层级） | 行为证据 | 阻断 |
 | build | 生产构建 | 产物可生成 | 阻断 |
-| 结构检查 | md 相对链接自检、`eslint-plugin-boundaries` 依赖方向 | 文档/架构不漂移 | 阻断 |
+| 结构检查 | `scripts/verify.mjs` 的守卫（md 相对链接 + `*.md` 引用自检、无 BOM）、`eslint-plugin-boundaries` 依赖方向 | 文档/架构不漂移 | 阻断 |
 
 ## 规则
 

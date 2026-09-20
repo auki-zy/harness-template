@@ -11,7 +11,7 @@
 3. 读取 `docs/QUALITY_SCORE.md`：当前最弱的领域。
 4. 读取 `docs/PLANS.md`，再打开 `docs/exec-plans/active/` 里的当前计划。
 5. 读相关规格：`docs/product-specs/`（用户可见行为）、`docs/design-docs/`（为什么这么设计）。
-6. 跑这个仓库的验证五件套（脚本名以 `package.json` 为准：`typecheck / lint / test / build`，加 `dev` 起来看一眼）。
+6. 跑验证：`node scripts/verify.mjs`（守卫 + 五件套，一条命令）；五件套脚本名以 `package.json` 为准，即 `typecheck / lint / test / build`，加 `dev` 起来看一眼。
 7. 基础验证先失败就先修 baseline，再加新范围。
 
 ## 路由地图
@@ -20,10 +20,14 @@
 - `docs/BOOTSTRAP.md`：用模板开新项目的必填 / 必装 / 必跑清单
 - `docs/PLANS.md`：计划生命周期与执行计划规则
 - `docs/exec-plans/active/`：当前正在执行的计划
+- `docs/exec-plans/completed/`：做完的计划（记忆面，不要删）
 - `docs/exec-plans/tech-debt-tracker.md`：延期处理的债务
 - `docs/QUALITY_SCORE.md`：产品领域与架构层健康度
 - `docs/product-specs/`：用户可见行为规格与验收标准
-- `docs/design-docs/`：设计决策（accepted / proposed / deprecated）
+- `docs/design-docs/`：设计决策（accepted / proposed / deprecated）；根信念见 `docs/design-docs/core-beliefs.md`
+- `docs/lessons/`：教训台账（症状 / 证据 / 诊断 / 候选改动 / 验证 / 棘轮）——自进化的记忆，也是规则改动的留痕处
+- `docs/EVALS.md`：轻量评测方法学（有争议的规则改动怎么用一次 A/B 裁决；重评测在评测仓库 `harness-lab`）
+- `scripts/verify.mjs`：零成本验证回路（无 BOM / 文档引用落地 / 五件套）；CI 用同一条命令，见 `.github/workflows/verify.yml`
 - `docs/` 下的**工程规范基线**（按实际栈改写，不要把用不上的留着也不要凭空删）：`CODE_STANDARDS`（代码规范）、`TESTING`（测试分层与"什么算测过"）、`SECURITY`（密钥 / 权限档位 / 危险操作）、`CI_CD`（流水线门禁）、`FRONTEND`（前端栈契约）、`MODULE_STRUCTURE`（模块边界与依赖方向）、`DESIGN`（界面与交互约定）、`MEMORY`（跨会话记忆与交接）、`AGENT_TOOLING`（各 agent 工具的薄视图 + 技能登记）、`RELIABILITY`（稳定性与可观测）、`REVIEW`（评审口径）、`PRODUCT_SENSE`（产品判断与取舍）
 - `docs/references/`：面向模型阅读的外部参考材料（`*-llms.txt`、外部指南），按需抓取
 
@@ -41,6 +45,9 @@
 - 改了行为就同步更新对应的 spec、plan 与质量文档。
 - 展示用文案、命名与拆分规则集中在 `ARCHITECTURE.md` 的「工程约定」里，别在组件里另立一套。
 - 如果某类 review feedback 反复出现，把它升级成测试、检查或 linter，而不是在聊天里重复解释。
+- **准入标准**：一条规则要进本文件或 `docs/` 规范，必须能回答"**哪个检查能证明它没被违反？**"。答不上来的先留在 `docs/lessons/`（状态：待验证），不要写成规则。
+- **规则要能被弄坏**：改规则时同时给出配套检查，并在 `docs/lessons/` 留一行痕（改了什么 / 为什么 / 哪个检查）。只加规则不加检查 = “提示词膨胀”，不是进化。
+- 验证优先零成本：能用守卫 / 测试 / 链接自检钉死的别靠读散文；只有行为类争议才值一次真评测（`docs/EVALS.md`）。
 - 需要更多细节时，优先补小而新的文档，而不是继续把这个文件写长。
 
 ## 完成定义
@@ -48,7 +55,7 @@
 一个改动只有在以下条件都满足时才算完成：
 
 - 目标行为已实现
-- 要求的验证真的跑过（五件套全绿）
+- 要求的验证真的跑过（`node scripts/verify.mjs` 全绿：守卫 + 五件套）
 - 证据已经挂到相关 plan 或质量文档里
 - 受影响的文档仍然是最新的
 - 仓库能按标准启动路径干净重启

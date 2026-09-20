@@ -14,6 +14,7 @@
 ## 计划放哪
 
 - `docs/exec-plans/active/`：当前正在驱动工作的计划
+- `docs/exec-plans/completed/`：做完的计划（移过去，不要删；它也是仓库记忆面的一部分）
 - `docs/exec-plans/tech-debt-tracker.md`：延期处理的债务与 follow-up
 
 ## 最少要包含的部分

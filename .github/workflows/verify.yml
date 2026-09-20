@@ -1,0 +1,23 @@
+name: verify
+
+# 门禁实现：与本地同一条命令（node scripts/verify.mjs），杜绝"本地过 CI 挂"。
+# 蓝图与理由见 docs/CI_CD.md；守卫清单见 scripts/verify.mjs 头部注释。
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: 装配依赖（有 package.json 时）
+        if: ${{ hashFiles('package.json') != '' }}
+        run: npm ci --no-audit --no-fund
+      - name: 守卫 + 五件套
+        run: node scripts/verify.mjs
